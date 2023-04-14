@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+
+    <virtualType name="Codilar\Emp\Model\ResourceModel\EmpInfo\Grid\Collection"
+                 type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">emp</argument>
+            <argument name="resourceModel"
+                      xsi:type="string">Codilar\Emp\Model\ResourceModel\EmpInfo</argument>
+        </arguments>
+    </virtualType>
+
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="employee_info_listing_data_source"
+                      xsi:type="string">Codilar\Emp\Model\ResourceModel\EmpInfo\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+
+<preference for="Codilar\Emp\Api\EmpRepositoryInterface"
+                type="Codilar\Emp\Model\Api\EmpRepository"/> 
+
+    <preference for="Codilar\Emp\Api\EditRepositoryInterface"
+                type="Codilar\Emp\Model\Api\EditRepository"/> 
+
+          <preference for="Codilar\Emp\Api\EmpInterface" type="Codilar\Emp\Model\Api\Employee"/>      
+
+</config>

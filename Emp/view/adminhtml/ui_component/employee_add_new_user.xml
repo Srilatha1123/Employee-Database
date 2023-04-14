@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">employee_add_new_user.employee_form_data_source</item>
+        </item>
+        <item name="ajaxSave" xsi:type="boolean">false</item>
+        <item name="label" xsi:type="string" translate="true">General Information</item>
+        <item name="template" xsi:type="string">templates/form/collapsible</item>
+    </argument>
+
+    <settings>
+        <buttons>
+            <button name="back" class="Codilar\Emp\Block\Display\BackButton"/>
+            <button name="reset" class="Codilar\Emp\Block\Display\ResetButton"/>
+            <button name="save" class="Codilar\Emp\Block\Display\SaveButton"/>
+            <button name="save_and_continue" class="Codilar\Emp\Block\Display\SaveAndContinueButton"/>
+        </buttons>
+        <namespace>employee_add_new_user</namespace>
+        <dataScope>data</dataScope>
+        <deps>
+            <dep>employee_add_new_user.employee_form_data_source</dep>
+        </deps>
+    </settings>
+
+    <dataSource name="employee_form_data_source">
+        <argument name="data" xsi:type="array">
+            <item name="js_config" xsi:type="array">
+                <item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
+            </item>
+        </argument>
+        <settings>
+            <submitUrl path="employee/info/save"/>
+        </settings>
+        <dataProvider class="Codilar\Emp\Model\DataProvider\Employee\InfoProvider" name="employee_form_data_source">
+            <settings>
+                <requestFieldName>id</requestFieldName>
+                <primaryFieldName>id</primaryFieldName>
+            </settings>
+        </dataProvider>
+    </dataSource>
+    <fieldset name="general">
+        <settings>
+            <label/>
+        </settings>
+
+
+        <field name="name" sortOrder="0" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">name</item>
+                </item>
+            </argument>
+            <settings>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+                <label translate="true">Name</label>
+                <dataType>text</dataType>
+                <visible>true</visible>
+                <dataScope>name</dataScope>
+            </settings>
+        </field>
+
+        <field name="email" sortOrder="1" formElement="input">
+            <settings>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                    <rule name="validate-email" xsi:type="boolean">true</rule>
+                </validation>
+                <dataType>text</dataType>
+                <label translate="true">Email</label>
+                <visible>true</visible>
+                <dataScope>email</dataScope>
+            </settings>
+        </field>
+
+        <field name="dob" sortOrder="2" formElement="date">
+            <settings>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                    <rule name="validate-date" xsi:type="boolean">true</rule>
+                </validation>
+                <dataType>date</dataType>
+                <label translate="true">Dob</label>
+                <visible>true</visible>
+                <dataScope>dob</dataScope>
+            </settings>
+        </field>
+
+        <field name="phone" sortOrder="3" formElement="input">
+            <settings>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+                <dataType>int</dataType>
+                <label translate="true">Phone Number</label>
+                <visible>true</visible>
+                <dataScope>phone</dataScope>
+            </settings>
+        </field>
+
+        <field name="address" sortOrder="4" formElement="textarea">
+            <settings>
+                <validation>
+                    <rule name="validate-no-html-tags" xsi:type="boolean">true</rule>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+                <dataType>text</dataType>
+                <label translate="true">Address</label>
+                <visible>true</visible>
+                <dataScope>address</dataScope>
+            </settings>
+        </field>
+<field name="storeview">
+    <argument name="data" xsi:type="array">
+        <item name="options" xsi:type="object">Magento\Cms\Ui\Component\Listing\Column\Cms\Options</item>
+        <item name="config" xsi:type="array">
+            <item name="dataType" xsi:type="string">int</item>
+            <item name="label" xsi:type="string" translate="true">StoreView</item>
+            <item name="formElement" xsi:type="string">multiselect</item>
+            <item name="source" xsi:type="string">block</item>
+            <item name="dataScope" xsi:type="string">store_id</item>
+            <item name="default" xsi:type="string">0</item>
+            <item name="validation" xsi:type="array">
+                <item name="required-entry" xsi:type="boolean">true</item>
+            </item>
+        </item>
+    </argument>
+</field>
+
+     <field name="website" formElement="select" sortOrder="20">
+            <argument name="data" xsi:type="array">
+                <item name="options" xsi:type="object">Codilar\Emp\Model\Source\Website</item>
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">Emp</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Website</label>
+                <dataScope>website</dataScope>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+        </field>
+    </fieldset>
+</form>
